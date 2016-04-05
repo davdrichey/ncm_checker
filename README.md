@@ -14,3 +14,6 @@ You will be prompted for the following: a) nimble array hostname b) username c) 
 
 # In-Progress
 Exploring the option of automatically (if desired) uninstalling the NCM and upgrading to the new one along with all required KBs from MS. Also working on checking several arrays instead of just one. 
+
+# Python Requirements (here, for now)
+-requests
