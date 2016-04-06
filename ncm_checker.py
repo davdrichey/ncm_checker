@@ -1,6 +1,6 @@
 ##############################################################################
 # Nimble Connection Manager Version Checker by David Richey (City of Conroe) #
-#                               v0.1 3/28/2016                               #
+#                               v0.2 4/6/2016                                #
 ##############################################################################
 
 from nimbleapi.nimbleapi import nimbleapi
@@ -19,16 +19,18 @@ def get_inits():
     nimble.initiator_read()
     if len(nimble.dict_initiators) <= 0:
         print "No initiators were found on array %s or there was an error gathering them!" % (nimble.hostname)
+        time.sleep(2)
         sys.exit()
     else:
-        for i in range(len(nimble.dict_initiators)):
+        
+        for initiator in nimble.dict_initiators:
             #print nimble.dict_initiators[i]['initiator_group_name'] + ": " + nimble.dict_initiators[i]['iqn']
-            if nimble.dict_initiators[i]['iqn'].find("microsoft") > -1:
-                comp_name = nimble.dict_initiators[i]['iqn'].split(":")[1].split(".")[0]
+            if nimble.dict_initiators[initiator]['iqn'].find("microsoft") > -1:
+                comp_name = nimble.dict_initiators[initiator]['iqn'].split(":")[1].split(".")[0]
                 #print comp_name
                 if not comp_name in ms_initiators:
                     #print "YAY!"
-                    ms_initiators.append(comp_name)
+                    ms_initiators.append(comp_name.encode('ascii'))
         
                 
 
@@ -36,13 +38,15 @@ def check_ncm_version():
     global ms_initiators
     if len(ms_initiators) <= 0:
         print "No Microsoft IQNs were found!"
+        time.sleep(2)
         sys.exit()
     else:
+        print "\nInitiators Found: %s" % (ms_initiators)
         print "\nStarting checks. This may take some time...\n"
         for computer in ms_initiators:
             cmd = 'wmic /node:\"%s\" product where \"name like \'%%Nimble%%\'\" get name, version' % (computer)
             try:
-                print computer
+                print "*** %s ***" % (computer)
                 output = check_output(cmd, shell=True)
                 if not output.strip("\r\n"):
                     print "No Instance(s) Found\n"
