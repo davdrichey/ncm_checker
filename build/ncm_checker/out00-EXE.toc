@@ -6,7 +6,7 @@
  None,
  False,
  False,
- <PyInstaller.utils.win32.winmanifest.Manifest object at 0x02D54B10>,
+ <PyInstaller.utils.win32.winmanifest.Manifest object at 0x0264AF30>,
  True,
  'ncm_checker.pkg',
  [('out00-PYZ.pyz',
@@ -71,7 +71,7 @@
  [],
  False,
  False,
- 1459958470L,
+ 1459970357L,
  [('run.exe',
    'C:\\Python27\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-32bit\\run.exe',
    'EXECUTABLE')])
