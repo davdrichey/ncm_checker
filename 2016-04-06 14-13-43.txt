@@ -1,0 +1,2 @@
+Initiators that we found and are checking: ['server61', 'chv-sccm01', 'twritm-052', 'server3', 'server39', 'chv-sql03', 'chv-sql02', 'server24', 'server5-new', 'twritm-008', 'twritm-400']
+*** server61 ***
